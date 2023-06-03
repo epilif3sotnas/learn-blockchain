@@ -18,7 +18,7 @@ Commands to run the project:
 
 ```
 cd {PATH_REPOSITORY};
-nimble --threads:on run;
+nimble run;
 ```
 
 &nbsp;
