@@ -17,9 +17,7 @@ type
 
 
 proc calculateHash(blockContent: openArray[string]): string =
-    let dataToHash: string = join(blockContent)
-
-    return $sha256.digest(dataToHash)
+    return $sha256.digest(join(blockContent))
 
 proc newBock*(data: string, previousHash: string, timestamp: uint32): Block =
     return Block(
