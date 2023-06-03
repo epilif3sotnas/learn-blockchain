@@ -1,5 +1,10 @@
+# internal
+import
+  blockchain/blocks
+
+
 proc main() =
-    discard
+  discard
 
 when isMainModule:
   main()
