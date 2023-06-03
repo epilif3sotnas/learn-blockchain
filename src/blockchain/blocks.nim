@@ -30,6 +30,9 @@ proc newBlock*(data: string, previousHash: string, timestamp: int64): Block =
         hash: calculateHash(@[data, previousHash, intToStr(cast[int](timestamp)), intToStr(0)])
     )
 
+proc calculateHash*(self: Block): string =
+    return $sha256.digest(join(@[self.data, self.previousHash, intToStr(cast[int](self.timestamp)), intToStr(cast[int](self.timestamp))]))
+
 proc getHash*(self: Block): string =
     return self.hash
 
