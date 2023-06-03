@@ -37,7 +37,7 @@ proc getHash*(self: Block): string =
     return self.hash
 
 proc setHash*(self: Block) =
-    self.hash = calculateHash(@[self.data, self.previousHash, intToStr(cast[int](self.timestamp))])
+    self.hash = self.calculateHash()
 
 proc getPreviousHash*(self: Block): string =
     return self.previousHash
