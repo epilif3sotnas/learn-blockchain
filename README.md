@@ -1,6 +1,6 @@
 ## About learn-blockchain
 
-This repository was built with the goal to implement a simple blockchain in order to learn how the blockchain protocol works.
+This repository was built with the goal to implement a simple blockchain in order to learn how the blockchain protocol works. Tutorial from [java-blockchain](https://www.baeldung.com/java-blockchain).
 
 &nbsp;
 
