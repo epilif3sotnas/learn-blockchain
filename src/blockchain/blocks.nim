@@ -27,11 +27,11 @@ proc newBlock*(data: string, previousHash: string, timestamp: int64): Block =
         previousHash: previousHash,
         timestamp: timestamp,
         nonce: 0,
-        hash: calculateHash(@[data, previousHash, intToStr(cast[int](timestamp)), intToStr(0)])
+        hash: calculateHash(@[data, previousHash, intToStr(timestamp.int()), intToStr(0)])
     )
 
 proc calculateHash*(self: Block): string =
-    return $sha256.digest(join(@[self.data, self.previousHash, intToStr(cast[int](self.timestamp)), intToStr(cast[int](self.nonce))]))
+    return $sha256.digest(join(@[self.data, self.previousHash, intToStr(self.timestamp.int()), intToStr(self.nonce.int())]))
 
 proc getHash*(self: Block): string =
     return self.hash
