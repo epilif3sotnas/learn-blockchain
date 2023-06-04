@@ -6,16 +6,39 @@ import
 
 # internal
 import
-  blockchain/blocks
+  blockchain/[
+    blocks,
+    miner
+  ]
 
 
 proc main() =
-  let blockA = newBlock("Transaction", "Genesis", getTime().toUnix())
-  echo "Hash: " & blockA.getHash()
-  echo "Previous Hash: " & blockA.getPreviousHash()
-  echo "Data: " & blockA.getData()
-  echo "Timestamp: " & $blockA.getTimestamp()
-  echo "Nonce: " & $blockA.getNonce()
+  var blockchain = newSeq[Block]()
+
+  let miner = newMiner(4)
+
+  var previousHash = "Genesis"
+  for idx in countup(1, 100):
+    if blockchain.len() > 0:
+      previousHash = blockchain[blockchain.len() - 1].getHash()
+
+    var blockA = newBlock("Block " & $idx, previousHash, getTime().toUnix())
+
+    blockA = miner.mineBlock(blockA)
+
+    blockchain.add(blockA)
+
+  for element in blockchain:
+    echo "\n\n=========================================="
+    echo "Hash: " & element.getHash()
+    echo "Previous Hash: " & element.getPreviousHash()
+    echo "Data: " & element.getData()
+    echo "Timestamp: " & $element.getTimestamp()
+    echo "Nonce: " & $element.getNonce()
+    echo "=========================================="
+
+
+  
 
 when isMainModule:
   main()
